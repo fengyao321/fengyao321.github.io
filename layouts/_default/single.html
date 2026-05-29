@@ -1,0 +1,21 @@
+{{ partial "header.html" . }}
+
+<article class="post-article">
+    <header class="post-header">
+        <span class="post-date">{{ .Date.Format "2006年01月02日" }}</span>
+        <h1 class="post-title">{{ .Title }}</h1>
+        {{ if .Params.tags }}
+        <div class="post-tags">
+            {{ range .Params.tags }}
+            <span class="post-tag">#{{ . }}</span>
+            {{ end }}
+        </div>
+        {{ end }}
+    </header>
+    
+    <div class="post-body">
+        {{ .Content }}
+    </div>
+</article>
+
+{{ partial "footer.html" . }}
