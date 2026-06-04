@@ -22,7 +22,8 @@
                 });
                 
                 import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs').then(m => {
-                    m.default.initialize({ startOnLoad: true });
+                    m.default.initialize({ startOnLoad: false });
+                    m.default.run();
                 });
             });
         </script>

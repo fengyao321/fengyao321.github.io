@@ -41,7 +41,7 @@ jobs:
         with:
           format: svg
           path: static/images/
-          output: static/images/
+          output: .
           remove-page-suffix: true
       - name: Setup Pages
         id: pages
