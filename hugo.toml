@@ -1,7 +1,7 @@
 baseURL = 'https://fengyao321.github.io/'
 languageCode = 'zh-cn'
 title = "Fengyao's Space"
-theme = [] # Using bespoke layout in the local layouts folder
+theme = "nostyleplease"
 
 [params]
   description = "在这里，记录技术、生活与思考"
@@ -10,11 +10,10 @@ theme = [] # Using bespoke layout in the local layouts folder
   avatar = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&h=256&q=80"
   mainSections = ["posts"]
 
-[[menu.main]]
-  name = "首页"
-  url = "/"
-  weight = 1
-[[menu.main]]
-  name = "文章"
-  url = "/posts/"
-  weight = 2
+  [params.theme_config]
+    appearance        = "auto"
+    back_home_text    = ".."
+    date_format       = "2006-01-02"
+    isListGroupByDate = false
+    isShowFooter      = true
+    show_description  = true
