@@ -43,6 +43,7 @@ jobs:
           path: static/images/
           output: .
           remove-page-suffix: true
+          action-mode: all
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
