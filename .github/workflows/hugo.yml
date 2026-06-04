@@ -36,6 +36,12 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
+      - name: Export drawio files to svg
+        uses: rlespinasse/drawio-export-action@v2
+        with:
+          format: svg
+          path: static/images/
+          output: static/images/
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
