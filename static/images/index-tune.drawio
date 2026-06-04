@@ -1,0 +1,43 @@
+<mxfile host="Electron" modified="2026-06-04T09:54:29Z" agent="5.0" version="20.0.0" type="device">
+  <diagram id="diagram_1" name="Page-1">
+    <mxGraphModel dx="1000" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Traditional" value="传统 Cost-based 调优 (高开销)" style="swimlane;html=1;startSize=20;horizontal=1;container=1;collapsible=0;rounded=1;arcSize=10;fillColor=#f8fafc;strokeColor=#4a90e2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="540" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="SQL1" value="SQL 负载" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4a90e2;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="100" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Opt" value="查询优化器" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4a90e2;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="100" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge1" value="What-if 估算" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4a90e2;exitX=1;exitY=0.25;entryX=0;entryY=0.25;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="SQL1" target="Opt">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge2" value="迭代搜索与推荐" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4a90e2;exitX=0;exitY=0.75;entryX=1;entryY=0.75;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Opt" target="SQL1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LLM_Based" value="全新 LLM 知识驱动调优 (秒级响应)" style="swimlane;html=1;startSize=20;horizontal=1;container=1;collapsible=0;rounded=1;arcSize=10;fillColor=#e6f7ff;strokeColor=#1890ff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="260" width="540" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="SQL2" value="SQL 负载" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1890ff;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LLM" value="LLM 模型" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1890ff;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Out2" value="最优索引推荐" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1890ff;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="420" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge3" value="Prompt 引导" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1890ff;" edge="1" parent="1" source="SQL2" target="LLM">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge4" value="直接生成" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1890ff;" edge="1" parent="1" source="LLM" target="Out2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
