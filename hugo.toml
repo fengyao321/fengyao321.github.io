@@ -6,7 +6,7 @@ theme = "nostyleplease"
 [params]
   description = ""
   author = "fengyao"
-  bio = "软件工程师 / 技术探索者 / 终身学习者"
+  bio = ""
   avatar = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&h=256&q=80"
   mainSections = ["posts"]
 
