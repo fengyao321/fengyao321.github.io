@@ -27,5 +27,9 @@
             });
         </script>
         {{ end }}
+
+        {{ if .Params.drawio }}
+        <script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+        {{ end }}
     </body>
 </html>
