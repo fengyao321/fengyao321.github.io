@@ -42,6 +42,7 @@ jobs:
           format: svg
           path: static/images/
           output: static/images/
+          remove-page-suffix: true
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
