@@ -1,19 +1,21 @@
 baseURL = 'https://fengyao321.github.io/'
 languageCode = 'zh-cn'
 title = "Yao"
-theme = "nostyleplease"
+theme = "yinyang"
 
 [params]
-  description = ""
-  author = "fengyao"
-  bio = ""
-  avatar = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&h=256&q=80"
+  description = "保持好奇，记录思考。"
+  headTitle = "Yao"
   mainSections = ["posts"]
+  extraCSSFiles = ["css/yinyang-custom.css"]
 
-  [params.theme_config]
-    appearance        = "auto"
-    back_home_text    = ".."
-    date_format       = "2006-01-02"
-    isListGroupByDate = false
-    isShowFooter      = true
-    show_description  = true
+[params.author]
+  name = "Yao"
+
+[[params.socials]]
+  name = "About"
+  link = "https://github.com/fengyao321"
+
+[[params.socials]]
+  name = "RSS"
+  link = "/index.xml"
