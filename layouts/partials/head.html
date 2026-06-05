@@ -1,0 +1,196 @@
+<head>
+  <meta charset="utf-8" />
+  {{ hugo.Generator }}
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="{{ .Site.Params.author.name }}" />
+  <meta property="og:url" content="{{ .Permalink }}" />
+  <link rel="canonical" href="{{ .Permalink }}" />
+
+  {{- if .Site.Params.staticPrefix -}}
+  <link rel="dns-prefetch" href="{{ .Site.Params.staticPrefix }}" />
+  {{- end -}}
+  {{- if .Site.Params.favicon -}}
+  <link rel="apple-touch-icon" href="{{ .Site.Params.favicon }}" />
+  <link rel="icon" href="{{ .Site.Params.favicon }}" />
+  <link rel="shortcut" href="{{ .Site.Params.favicon }}" />
+  {{- end -}}
+  <link
+    rel="alternate"
+    type="application/atom+xml"
+    href="{{.Site.BaseURL}}index.xml"
+    title="{{ .Site.Title }}"
+  />
+
+  {{ partial "seo" . }}
+  
+  {{- if .IsHome -}}
+  <title>{{ .Site.Title }}</title>
+  <meta property="og:title" content="{{ .Site.Title }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="{{ .Site.Params.description }}" />
+  <meta name="description" content="{{ .Site.Params.description }}" />
+  {{- else -}}
+  <title>{{ .Title }}</title>
+  <meta property="og:title" content="{{ .Title }}" />
+  <meta property="og:type" content="article" />
+  <meta
+    property="og:description"
+    content="{{ default .Summary .Description | plainify }}"
+  />
+  <meta
+    name="description"
+    content="{{ default .Summary .Description | plainify }}"
+  />
+  {{- end }}
+  <meta property="og:locale" content="{{ .Site.LanguageCode }}" />
+  {{- if .Params.album -}}
+  <meta property="og:image" content="{{ .Params.album }}" />
+  {{- else -}}
+  <meta property="og:image" content="{{ .Site.Params.favicon }}" />
+  {{ end }}
+  {{ with resources.Get "css/index.css" | minify }}
+  <style>{{ .Content|safeCSS }}</style>
+  {{ end }}
+  {{ with resources.Get "css/flexboxgrid-6.3.1.min.css" | minify }}
+  <style>{{ .Content|safeCSS }}</style>
+  {{ end }}
+  {{ range .Site.Params.extraCSSFiles -}}
+  <link
+    rel="stylesheet"
+    href="{{ $.Site.Params.staticPrefix }}{{ . | relURL }}"
+  />
+  {{- end }} <link href="{{ .Site.Params.staticPrefix }}{{ "index.xml" | relURL
+  }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}">
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade"
+    rel="stylesheet"
+  />
+  <!-- quicklink require -->
+  <!-- <script>
+    /* Disable minification (remove `.min` from URL path) for more info 
+    https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver
+    */
+    (function (undefined) { }).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script> -->
+
+  <!-- Prevent theme flash by setting theme before page render -->
+  <script data-cfasync="false">
+    (function() {
+      const themeKey = 'theme';
+      const themes = { light: 'light', dark: 'dark', system: 'system' };
+
+      function getSystemTheme() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      function getStoredTheme() {
+        return localStorage.getItem(themeKey);
+      }
+      function getCurrentTheme() {
+        const stored = getStoredTheme();
+        if (stored && stored !== themes.system) {
+          return stored;
+        }
+        return getSystemTheme();
+      }
+      function setTheme(theme) {
+        const root = document.documentElement;
+        if (theme === themes.system) {
+          theme = getSystemTheme();
+        }
+        if (theme === themes.dark) {
+          root.setAttribute('data-theme', 'dark');
+        } else {
+          root.removeAttribute('data-theme');
+        }
+        updateToggleButton(theme);
+      }
+      function updateToggleButton(theme) {
+        const button = document.getElementById('theme-toggle');
+        if (button) {
+          button.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+      }
+      function ensureButtonUpdated() {
+        updateToggleButton(getCurrentTheme());
+      }
+      function initTheme() {
+        const stored = getStoredTheme();
+        let theme;
+        if (stored) {
+          theme = stored === themes.system ? getSystemTheme() : stored;
+          setTheme(stored);
+        } else {
+          // Default to system
+          theme = getSystemTheme();
+          setTheme(themes.system);
+        }
+      }
+      function toggleTheme() { // button onClick function
+        const current = getStoredTheme() || themes.system;
+        let next;
+        if (current === themes.system) {
+          next = getSystemTheme() === 'dark' ? themes.light : themes.dark;
+        } else if (current === themes.dark) {
+          next = themes.light;
+        } else {
+          next = themes.dark;
+        }
+        localStorage.setItem(themeKey, next);
+        setTheme(next);
+      }
+
+      // Listen for system theme changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        const stored = getStoredTheme();
+        if (!stored || stored === themes.system) {
+          setTheme(themes.system);
+        }
+      });
+
+      // Listen for dom loaded
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', ensureButtonUpdated);
+      } else {
+        // DOM already loaded, update button immediately
+        ensureButtonUpdated();
+      }
+
+      // Expose toggle function globally
+      window.toggleTheme = toggleTheme;
+
+      // Initialize when DOM is ready
+      initTheme();
+    })();
+  </script>
+  {{ template "_internal/google_analytics.html" .}}
+  {{ if .Site.Params.TwitterCards }}{{ template "_internal/twitter_cards.html" .}}{{ end }}
+  {{ .Site.Params.extraHead | safeHTML }}
+
+  {{ if .Params.mermaid }}
+  <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          const els = document.querySelectorAll("pre code.language-mermaid");
+          els.forEach((el) => {
+              const parent = el.parentElement;
+              const div = document.createElement("div");
+              div.className = "mermaid";
+              div.textContent = el.textContent;
+              parent.parentElement.replaceChild(div, parent);
+          });
+          
+          import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs').then(m => {
+              m.default.initialize({ startOnLoad: false });
+              m.default.run();
+          });
+      });
+  </script>
+  {{ end }}
+
+  {{ if .Params.drawio }}
+  <script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+  {{ end }}
+</head>
