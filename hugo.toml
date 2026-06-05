@@ -7,7 +7,6 @@ theme = "yinyang"
   description = "保持好奇，记录思考。"
   headTitle = "Yao"
   mainSections = ["posts"]
-  extraCSSFiles = ["css/yinyang-custom.css"]
 
 [params.author]
   name = "Yao"

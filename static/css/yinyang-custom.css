@@ -1,9 +1,0 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-body, h1, h2, h3, h4, h5, h6, p, li, blockquote, table, th, td, time, span, a {
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Lantinghei SC", "Microsoft YaHei", sans-serif !important;
-}
-
-code, pre {
-  font-family: monospace !important;
-}
