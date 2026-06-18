@@ -1,7 +1,7 @@
 ---
 title: "分布式共识的基石：MIT 6.5840 (6.824) Raft 与 Replicated KV 实验设计与实现总结"
 date: 2026-06-17T06:20:00+08:00
-draft: false
+draft: true
 tags: ["6.5840", "Raft", "Go", "分布式系统", "键值存储"]
 summary: "本文系统性总结了 MIT 6.5840 (原 6.824) 实验中 Raft 共识算法（包括领导者选举、日志复制、持久化、快照）以及基于 Raft 的强一致性分布式键值服务（KV-Raft）的设计细节、核心时序与踩坑总结。"
 mermaid: true
