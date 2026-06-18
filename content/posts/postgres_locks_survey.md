@@ -4,6 +4,7 @@ date: 2026-06-18T02:00:00Z
 draft: false
 tags: ["PostgreSQL", "Database", "Locking"]
 categories: ["Database"]
+mermaid: true
 ---
 
 # PostgreSQL 锁机制深度调研报告

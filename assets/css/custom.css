@@ -1,0 +1,41 @@
+/* Table Styles Override */
+.post-content table, .markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.post-content th, .markdown-body th {
+  background-color: var(--code-bg);
+  color: var(--text-color);
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.post-content td, .markdown-body td {
+  border: 1px solid var(--border-color);
+  padding: 10px 12px;
+  text-align: left;
+}
+
+/* Zebra striping for readability */
+.post-content tr:nth-child(even), .markdown-body tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+[data-theme="dark"] .post-content tr:nth-child(even), 
+[data-theme="dark"] .markdown-body tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Hover effect */
+.post-content tr:hover, .markdown-body tr:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+[data-theme="dark"] .post-content tr:hover, 
+[data-theme="dark"] .markdown-body tr:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
