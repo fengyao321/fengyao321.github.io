@@ -1,0 +1,73 @@
+<mxfile host="Electron" modified="2026-06-26T07:29:00Z" agent="5.0" version="20.0.0" type="device">
+  <diagram id="cleanup_lock_flow" name="Cleanup Lock 获取流程">
+    <mxGraphModel dx="1000" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Step 1 -->
+        <mxCell id="step1" value="1. 获取 Exclusive Content Lock&lt;br/&gt;&lt;span style=&quot;font-size: 11px; font-weight: normal; color: #595959;&quot;&gt;(加排他内容锁，阻挡常规并发读写)&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f7ff;strokeColor=#1890ff;strokeWidth=2;fontColor=#0050b3;fontSize=13;fontStyle=1;align=center;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="280" y="80" width="240" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision -->
+        <mxCell id="decision" value="Refcount == 1 ?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fffbe6;strokeColor=#fadb14;strokeWidth=2;fontColor=#ad6800;fontSize=13;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="310" y="200" width="180" height="100" as="geometry" />
+        </mxCell>
+        
+        <!-- Success (End) -->
+        <mxCell id="success" value="成功拿到 Cleanup Lock！&lt;br/&gt;&lt;span style=&quot;font-size: 11px; font-weight: normal; color: #389e0d;&quot;&gt;(可以安全进行物理空间整理与擦除)&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f6ffed;strokeColor=#52c41a;strokeWidth=3;fontColor=#237804;fontSize=13;fontStyle=1;align=center;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="580" y="220" width="200" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Step 2 -->
+        <mxCell id="step2" value="2. 释放 Exclusive Content Lock&lt;br/&gt;&lt;span style=&quot;font-size: 11px; font-weight: normal; color: #722ed1;&quot;&gt;(极度温和：避免死等阻塞其他 Reader 读页)&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff0f6;strokeColor=#eb2f96;strokeWidth=2;fontColor=#9e1068;fontSize=13;fontStyle=1;align=center;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="280" y="360" width="240" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Step 3 -->
+        <mxCell id="step3" value="3. 挂入等待队列，挂起当前进程&lt;br/&gt;&lt;span style=&quot;font-size: 11px; font-weight: normal; color: #d46b08;&quot;&gt;(挂在缓冲区的 BM_PIN_COUNT_WAITER 上)&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7e6;strokeColor=#ffa940;strokeWidth=2;fontColor=#d46b08;fontSize=13;fontStyle=1;align=center;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="280" y="480" width="240" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Wakeup -->
+        <mxCell id="wakeup" value="被唤醒&lt;br/&gt;&lt;span style=&quot;font-size: 11px; font-weight: normal; color: #531dab;&quot;&gt;(当其他 Backend 调用 UnpinBuffer&lt;br/&gt;将 Refcount 减到 1 时触发唤醒)&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9f0ff;strokeColor=#722ed1;strokeWidth=2;fontColor=#531dab;fontSize=13;fontStyle=1;align=center;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="280" y="600" width="240" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- Edges -->
+        <!-- Step 1 -> Decision -->
+        <mxCell id="edge1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1890ff;strokeWidth=2;" edge="1" parent="1" source="step1" target="decision">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision -> Success (YES) -->
+        <mxCell id="edge_yes" value="YES" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#52c41a;strokeWidth=2;labelBackgroundColor=#ffffff;fontColor=#237804;fontStyle=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="decision" target="success">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision -> Step 2 (NO) -->
+        <mxCell id="edge_no" value="NO" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d46b08;strokeWidth=2;labelBackgroundColor=#ffffff;fontColor=#d46b08;fontStyle=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="decision" target="step2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Step 2 -> Step 3 -->
+        <mxCell id="edge3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#eb2f96;strokeWidth=2;" edge="1" parent="1" source="step2" target="step3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Step 3 -> Wakeup -->
+        <mxCell id="edge4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#ffa940;strokeWidth=2;" edge="1" parent="1" source="step3" target="wakeup">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Wakeup -> Step 1 (Loop/Retry) -->
+        <mxCell id="edge_loop" value="重试" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#722ed1;strokeWidth=2;labelBackgroundColor=#ffffff;fontColor=#531dab;fontStyle=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="wakeup" target="step1">
+          <mxGeometry relative="1" as="geometry">
+            <Array points="220,635 220,110" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
