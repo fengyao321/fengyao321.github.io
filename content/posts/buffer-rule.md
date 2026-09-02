@@ -1,8 +1,7 @@
 ---
-title: "深入理解 PostgreSQL Buffer 访问协议：5条 Pin 规则与并发安全设计"
+title: "PostgreSQL Buffer 访问与 Pin 规则"
 date: 2026-06-26T07:25:00+08:00
 draft: false
-tags: ["PostgreSQL", "数据库", "Buffer Manager", "并发控制", "源码解析"]
 summary: "本文深入剖析 PostgreSQL 的 Buffer 访问协议（Pin 协议）。通过对官方设计文档的梳理，详细解析保障并发安全的 5 条核心规则：从入场券 Rule 1 到高效裸指针读取 Rule 2，再到写操作的 Rule 3/4，以及最终兑现安全承诺的 Cleanup Lock 机制（Rule 5），并结合 Mermaid 架构图展现它们之间的相互协同。"
 mermaid: true
 ---

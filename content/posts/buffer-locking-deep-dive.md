@@ -1,8 +1,7 @@
 ---
-title: "PostgreSQL 共享缓冲区内部锁定与并发控制设计演进"
+title: "PostgreSQL 缓冲区锁定演进"
 date: 2026-06-29T07:36:00+08:00
 draft: false
-tags: ["PostgreSQL", "数据库", "Buffer Manager", "并发控制", "锁机制"]
 summary: "本文深度剖析 PostgreSQL 共享缓冲区管理器（Buffer Manager）的内部锁定设计与并发控制演进。通过对官方设计文档的梳理，详尽分析五层精细化锁定与无锁同步体系：从哈希分区映射锁（BufMappingLock）、置换算法自旋锁（buffer_strategy_lock），到基于原子 CAS 的描述符状态/头部锁（BufferDesc->state）以及 I/O 条件变量，展示 PostgreSQL 如何彻底消除高并发下的锁定瓶颈。"
 mermaid: true
 ---

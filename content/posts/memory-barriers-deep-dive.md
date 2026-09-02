@@ -1,8 +1,7 @@
 ---
-title: "深入理解内存屏障：从 PostgreSQL README.barrier 到 CPU 硬件与 Linux 内核实践"
+title: "内存屏障原理与内核实践"
 date: 2026-09-01T08:55:00+08:00
 draft: false
-tags: ["PostgreSQL", "并发编程", "内存屏障", "Linux内核", "计算机体系结构", "C++"]
 categories: ["底层技术", "数据库", "并发编程"]
 ---
 

@@ -1,13 +1,12 @@
 ---
-title: "PostgreSQL 锁机制深度调研"
+title: "PostgreSQL 锁机制调研"
 date: 2026-06-18T02:00:00Z
 draft: false
-tags: ["PostgreSQL", "Database", "Locking"]
 categories: ["Database"]
 mermaid: true
 ---
 
-# PostgreSQL 锁机制深度调研报告
+# PostgreSQL 锁机制调研
 
 本报告对 PostgreSQL 中的锁机制进行了全面的梳理与调研，涵盖了从面向应用的高级锁（Heavyweight Locks）到面向系统内核的底层锁（LWLocks, Spinlocks），以及 SSI（可串行化快照隔离）所使用的谓词锁（Predicate Locks）。
 

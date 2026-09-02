@@ -1,8 +1,7 @@
 ---
-title: "别再让全页写入扼杀吞吐量：从 PostgreSQL FPW 到 MySQL DWB 的内核级性能对决"
+title: "PostgreSQL FPW 与 MySQL DWB 对决"
 date: 2026-06-16T08:15:53+08:00
 draft: false
-tags: ["PostgreSQL", "MySQL", "数据库", "双写缓存", "全页写入", "性能对决"]
 summary: "本文深度剖析数据库底层防断页（Torn Page）两大经典机制——PostgreSQL 的全页写入（FPW）与 MySQL InnoDB 的双写缓冲区（DWB），从架构时序、前后台开销以及高并发性能对决等多维度进行全方位深度对比。"
 mermaid: true
 ---

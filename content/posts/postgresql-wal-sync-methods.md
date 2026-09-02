@@ -1,8 +1,7 @@
 ---
-title: "深入理解 PostgreSQL WAL 刷盘机制：wal_sync_method 物理写入过程剖析"
+title: "PostgreSQL WAL 刷盘机制"
 date: 2026-06-10T19:16:18+08:00
 draft: false
-tags: ["PostgreSQL", "数据库", "WAL", "系统调用", "性能调优"]
 summary: "本文结合详细的 Mermaid 时序图，深入剖析 PostgreSQL 的写前日志（WAL）落盘机制，详细解析 fdatasync、fsync、fsync_writethrough、open_datasync 和 open_sync 等不同 wal_sync_method 的实现原理、系统调用底层差异以及性能与持久化强度的折中。"
 mermaid: true
 ---
