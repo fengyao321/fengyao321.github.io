@@ -2,7 +2,6 @@
 title: "内存屏障原理与内核实践"
 date: 2026-09-01T08:55:00+08:00
 draft: false
-categories: ["底层技术", "数据库", "并发编程"]
 ---
 
 在编写高并发、低延迟的底层系统软件（如数据库引擎 PostgreSQL、操作系统内核 Linux）时，开发者往往需要超越常规的互斥锁（Mutex/LWLock），使用无锁（Lock-free）数据结构以追求极限性能。而无锁编程的核心与最大难点，便在于**内存屏障（Memory Barrier）**与**内存重排序（Memory Reordering）**。

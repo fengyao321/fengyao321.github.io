@@ -2,7 +2,6 @@
 title: "PostgreSQL 索引与堆表并发锁机制深度剖析：从 B-Tree 暂存深拷贝到 Heap 的 Pin 保护裸指针"
 date: 2026-09-01T03:20:00+08:00
 draft: false
-tags: ["PostgreSQL", "数据库", "Storage", "B-Tree", "BufferLock", "并发控制", "源码分析"]
 summary: "本文深度剖析 PostgreSQL 索引扫描（B-Tree Index Scan）与堆表扫描（Heap Scan）在缓冲区锁（Buffer LWLock）与内存访问上的底层设计差异。详细对比 B-Tree 的批处理暂存深拷贝机制与 Heap 的 Pin 保护裸指针模式，解答锁释放后内存访问安全性的核心疑问，揭示数据库在内存安全、并发锁争用与 VACUUM 友好性之间的极致权衡。"
 mermaid: true
 ---

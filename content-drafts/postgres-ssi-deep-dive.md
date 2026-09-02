@@ -2,8 +2,6 @@
 title: "深度解析 PostgreSQL 可串行化快照隔离 (SSI) 与谓词锁机制"
 date: 2026-09-02T03:00:00+08:00
 draft: false
-tags: ["PostgreSQL", "Database", "SSI", "Concurrency Control", "Locking", "MVCC"]
-categories: ["Database Internals"]
 summary: "本文深入剖析 PostgreSQL 中 Serializable Snapshot Isolation (SSI) 的原理与源码设计，涵盖 rw-conflict 危险结构检测、谓词锁 (Predicate Locking) 多粒度管理、针对 MVCC 追加写的元组锁不扩展证明，以及只读事务优化与 SLRU 内存溢出机制。"
 ---
 

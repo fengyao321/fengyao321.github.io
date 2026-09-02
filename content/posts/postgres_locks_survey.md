@@ -2,7 +2,6 @@
 title: "PostgreSQL 锁机制调研"
 date: 2026-06-18T02:00:00Z
 draft: false
-categories: ["Database"]
 mermaid: true
 ---
 
