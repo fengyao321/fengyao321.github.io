@@ -96,3 +96,10 @@ body, .markdown-body {
 [data-theme="dark"] .markdown-body tr:hover {
   background-color: rgba(255, 255, 255, 0.04);
 }
+
+/* 5. KaTeX 数学公式渲染优化 */
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5rem 0;
+}

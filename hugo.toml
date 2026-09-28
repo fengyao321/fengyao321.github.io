@@ -7,6 +7,16 @@ theme = "yinyang"
   description = "保持好奇，记录思考。"
   headTitle = "Yao"
   mainSections = ["posts"]
+  math = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)'], ['$', '$']]
 
 [params.author]
   name = "Yao"

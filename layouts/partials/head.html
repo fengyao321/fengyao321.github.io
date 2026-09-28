@@ -196,4 +196,29 @@
   {{ if .Params.drawio }}
   <script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
   {{ end }}
+
+  {{ if or (.Param "math") (.Param "katex") (.Param "mathjax") }}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderKaTeX()"></script>
+  <script>
+    let katexRendered = false;
+    function renderKaTeX() {
+      if (katexRendered) return;
+      if (typeof renderMathInElement !== 'undefined' && document.body) {
+        katexRendered = true;
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '\\[', right: '\\]', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+    document.addEventListener("DOMContentLoaded", renderKaTeX);
+  </script>
+  {{ end }}
 </head>

@@ -4,6 +4,7 @@ date: 2026-09-23T15:35:00+08:00
 draft: false
 summary: "本文系统级剖析 PostgreSQL B-Tree（nbtree）页面分裂（Page Split）全流程实现。从 Lehman & Yao 并发协议与 Prefix B-Tree 理论出发，深度拆解分裂前自救机制、分裂点选址算法与空间排序、为什么物理比例已定仍需三大分裂策略、默认容忍区间 split interval 设定机制、后缀截断（Suffix Truncation）原理、物理分裂执行（_bt_split）、原子 WAL 日志以及父节点递归与根分裂恢复。"
 mermaid: true
+math: true
 ---
 
 # PostgreSQL B-Tree 索引页面分裂（Page Split）机制深度调研报告
